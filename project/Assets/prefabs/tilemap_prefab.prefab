@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3977802882786155978}
   - component: {fileID: 7591231071808773925}
   m_Layer: 0
-  m_Name: EmptyMaze
+  m_Name: tilemap_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
