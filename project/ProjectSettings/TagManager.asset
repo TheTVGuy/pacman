@@ -7,6 +7,7 @@ TagManager:
   - trigger_tile
   - pellet
   - fruit
+  - player
   layers:
   - Default
   - TransparentFX
