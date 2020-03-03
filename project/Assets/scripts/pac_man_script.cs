@@ -24,6 +24,8 @@ public class pac_man_script : MonoBehaviour
     // Left  = 3
     int lastInput;
 
+    bool direction = false;
+
     Vector2 movement;
 
     public Rigidbody2D rigidbody2d;
@@ -40,45 +42,54 @@ public class pac_man_script : MonoBehaviour
     void Update()
     {
         movement = rigidbody2d.velocity;
-
-        //If the Up key is pressed, Set the lastInput to Up
-        if (Input.GetKeyDown(KeyCode.UpArrow) /*&& lastInput != 0*/)
+        if(direction)
         {
-            lastInput = 0;
+            //If the Up key is pressed, Set the lastInput to Up
+            if (Input.GetKeyDown(KeyCode.UpArrow) /*&& lastInput != 0*/)
+            {
+                lastInput = 0;
 
-            movement.y = movement.y + 1.0f * pacSpeed * Time.deltaTime;
+                movement.y = 1.0f * pacSpeed * Time.deltaTime;
+                movement.x = 0.0f;
 
-            Debug.Log(lastInput);
+                Debug.Log(lastInput);
+            }
+
+            //If the Down key is pressed, Set the lastInput to Down
+            else if (Input.GetKeyDown(KeyCode.DownArrow) /*&& lastInput != 1*/)
+            {
+                lastInput = 1;
+
+                movement.y = -1.0f * pacSpeed * Time.deltaTime;
+                movement.x = 0.0f;
+
+                Debug.Log(lastInput);
+            }
         }
 
-        //If the Down key is pressed, Set the lastInput to Down
-        else if (Input.GetKeyDown(KeyCode.DownArrow) /*&& lastInput != 1*/)
+        if(!direction)
         {
-            lastInput = 1;
+            //If the Right key is pressed, Set the lastInput to Right
+            if (Input.GetKeyDown(KeyCode.RightArrow) /*&& lastInput != 2*/)
+            {
+                lastInput = 2;
 
-            movement.y = movement.y - 1.0f * pacSpeed * Time.deltaTime;
+                movement.x = 1.0f * pacSpeed * Time.deltaTime;
+                movement.y = 0.0f;
 
-            Debug.Log(lastInput);
-        }
+                Debug.Log(lastInput);
+            }
 
-        //If the Right key is pressed, Set the lastInput to Right
-        else if (Input.GetKeyDown(KeyCode.RightArrow) /*&& lastInput != 2*/)
-        {
-            lastInput = 2;
+            //If the Left key is pressed, Set the lastInput to Left
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) /*&& lastInput != 3*/)
+            {
+                lastInput = 3;
 
-            movement.x = movement.x + 1.0f * pacSpeed * Time.deltaTime;
+                movement.x = -1.0f * pacSpeed * Time.deltaTime;
+                movement.y = 0.0f;
 
-            Debug.Log(lastInput);
-        }
-
-        //If the Left key is pressed, Set the lastInput to Left
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) /*&& lastInput != 3*/)
-        {
-            lastInput = 3;
-
-            movement.x = movement.x - 1.0f * pacSpeed * Time.deltaTime;
-
-            Debug.Log(lastInput);
+                Debug.Log(lastInput);
+            }
         }
 
         rigidbody2d.velocity = movement;
@@ -89,7 +100,14 @@ public class pac_man_script : MonoBehaviour
     void OnCollition2D(GameObject other)
     {
 
-
     }
 
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "trigger_tile")
+        {
+            direction = !direction;
+        }
+
+    }
 }
