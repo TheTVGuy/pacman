@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9142088542188516261}
   - component: {fileID: 9142088542188516262}
   - component: {fileID: 6866344999771178928}
+  - component: {fileID: 1989764708}
   m_Layer: 0
   m_Name: red_ghost
   m_TagString: Untagged
@@ -145,4 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  speed: 3
+  speed: 180
+  threshold: 0.1
+--- !u!114 &1989764708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142088542188516263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4483c8efe4efcc58a8220823d8334ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 15
