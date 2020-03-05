@@ -222,6 +222,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: trigger_tiles
       objectReference: {fileID: 0}
+    - target: {fileID: 7763435385328844966, guid: 0a2875e88d7b0b85cb5dab9f051d9382,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a2875e88d7b0b85cb5dab9f051d9382, type: 3}
 --- !u!114 &1131278753
@@ -7777,6 +7782,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990840467975630369, guid: 9aad2a52ab9acf648b4d035283f360bb,
+        type: 3}
+      propertyPath: width
+      value: 14.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aad2a52ab9acf648b4d035283f360bb, type: 3}

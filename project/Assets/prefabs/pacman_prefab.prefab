@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3180450379707006795}
   - component: {fileID: 3180450379707006794}
   - component: {fileID: 1979134515509863343}
+  - component: {fileID: 7990840467975630369}
   m_Layer: 8
   m_Name: pacman_prefab
   m_TagString: player
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pacSpeed: 10
+  threshold: 0.1
 --- !u!50 &3180450379707006795
 Rigidbody2D:
   serializedVersion: 4
@@ -165,3 +167,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7990840467975630369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3180450379707006790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4483c8efe4efcc58a8220823d8334ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 15

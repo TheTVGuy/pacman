@@ -144,7 +144,30 @@ public class pac_man_script : MonoBehaviour
             && Mathf.Abs(collider.transform.position.x - transform.position.x) <= threshold
             && Mathf.Abs(collider.transform.position.y - transform.position.y) <= threshold)
         {
-            moveInput = lastInput;
+            trigger_tile tile = collider.gameObject.GetComponent<trigger_tile>();
+
+            if (tile != null)
+            {
+                if(tile.up && lastInput == 0)
+                {
+                    moveInput = lastInput;
+                }
+
+                else if (tile.down && lastInput == 1)
+                {
+                    moveInput = lastInput;
+                }
+
+                else if (tile.right && lastInput == 2)
+                {
+                    moveInput = lastInput;
+                }
+
+                else if (tile.left && lastInput == 3)
+                {
+                    moveInput = lastInput;
+                }
+            }
         }
 
         //Eating Parts of function

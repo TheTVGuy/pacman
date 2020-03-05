@@ -28,9 +28,9 @@ public class screen_wrap : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.position.x < -width && rigidbody.velocity.x < 0.0f)
+        if (transform.position.x < -width /*&& rigidbody.velocity.x < 0.0f*/)
 			transform.position = new Vector2(width, transform.position.y);
-		if (transform.position.x > width && rigidbody.velocity.x > 0.0f)
+		if (transform.position.x > width /*&& rigidbody.velocity.x > 0.0f*/)
 			transform.position = new Vector2(-width, transform.position.y);
     }
 }
