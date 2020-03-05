@@ -17,14 +17,22 @@ public class pac_man_script : MonoBehaviour
     //Pacman's current Speed
     public int pacSpeed = 1;
 
-    // Last Input Ennum to decide which way pac-man moves
+    //Collider Threshold
+    public float threshold = 0.1f;
+
+    // Last Input "Ennum" to decide which way pac-man will moves
     // Up    = 0
     // Down  = 1
     // Right = 2
     // Left  = 3
     int lastInput;
 
-    bool direction = false;
+    // Controls which direction Pacman is going
+    // Up    = 0
+    // Down  = 1
+    // Right = 2
+    // Left  = 3
+    int moveInput;
 
     Vector2 movement;
 
@@ -35,6 +43,7 @@ public class pac_man_script : MonoBehaviour
     void Start()
     {
         lastInput = 2;
+        moveInput = 2;
 
         rigidbody2d = gameObject.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -43,65 +52,99 @@ public class pac_man_script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement = rigidbody2d.position;
-        if(direction)
+        //If the Up key is pressed, Set the lastInput to Up
+        if (Input.GetKey(KeyCode.UpArrow) /*&& lastInput != 0*/)
         {
-            //If the Up key is pressed, Set the lastInput to Up
-            if (Input.GetKey(KeyCode.UpArrow) /*&& lastInput != 0*/)
+            if (moveInput == 1)
             {
-                lastInput = 0;
-
-                movement.y = movement.y + 1.0f * pacSpeed * Time.deltaTime;
-
-                Debug.Log(lastInput);
+                moveInput = 0;
             }
 
-            //If the Down key is pressed, Set the lastInput to Down
-            else if (Input.GetKey(KeyCode.DownArrow) /*&& lastInput != 1*/)
-            {
-                lastInput = 1;
+            lastInput = 0;
 
-                movement.y = movement.y - 1.0f * pacSpeed * Time.deltaTime;
-
-                Debug.Log(lastInput);
-            }
+            Debug.Log(lastInput);
         }
 
-        if(!direction)
+        //If the Down key is pressed, Set the lastInput to Down
+        else if (Input.GetKey(KeyCode.DownArrow) /*&& lastInput != 1*/)
         {
-            //If the Right key is pressed, Set the lastInput to Right
-            if (Input.GetKey(KeyCode.RightArrow) /*&& lastInput != 2*/)
+            if (moveInput == 0)
             {
-                lastInput = 2;
-
-                movement.x = movement.x + 1.0f * pacSpeed * Time.deltaTime;
-
-                Debug.Log(lastInput);
+                moveInput = 1;
             }
 
-            //If the Left key is pressed, Set the lastInput to Left
-            else if (Input.GetKey(KeyCode.LeftArrow) /*&& lastInput != 3*/)
+            lastInput = 1;
+
+            Debug.Log(lastInput);
+        }
+        
+        //If the Right key is pressed, Set the lastInput to Right
+        else if (Input.GetKey(KeyCode.RightArrow) /*&& lastInput != 2*/)
+        {
+            if (moveInput == 3)
             {
-                lastInput = 3;
-
-                movement.x = movement.x - 1.0f * pacSpeed * Time.deltaTime;
-
-                
-
-                Debug.Log(lastInput);
+                moveInput = 2;
             }
+
+            lastInput = 2;
+
+            Debug.Log(lastInput);
+        }
+
+        //If the Left key is pressed, Set the lastInput to Left
+        else if (Input.GetKey(KeyCode.LeftArrow) /*&& lastInput != 3*/)
+        {
+            if(moveInput == 2)
+            {
+                moveInput = 3;
+            }
+
+            lastInput = 3;
+
+            Debug.Log(lastInput);
+        }
+
+        PacManMovement();
+
+    }
+
+    //Will move PacMan based on the last given Input
+    void PacManMovement()
+    {
+        movement = rigidbody2d.position;
+
+        if (moveInput == 0)
+        {
+            movement.y = movement.y + 1.0f * pacSpeed * Time.deltaTime;
+        }
+
+        else if (moveInput == 1)
+        {
+            movement.y = movement.y - 1.0f * pacSpeed * Time.deltaTime;
+        }
+
+        else if (moveInput == 2)
+        {
+            movement.x = movement.x + 1.0f * pacSpeed * Time.deltaTime;
+        }
+
+        else if (moveInput == 3)
+        {
+            movement.x = movement.x - 1.0f * pacSpeed * Time.deltaTime;
         }
 
         rigidbody2d.position = movement;
 
-        animator.SetFloat("Input", lastInput);
+        animator.SetFloat("Input", moveInput);
     }
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "trigger_tile")
+        if (collider.gameObject.tag == "trigger_tile" 
+            && Mathf.Abs(collider.transform.position.x - transform.position.x) <= threshold
+            && Mathf.Abs(collider.transform.position.y - transform.position.y) <= threshold)
         {
-            direction = !direction;
+            moveInput = lastInput;
         }
 
         //Eating Parts of function
