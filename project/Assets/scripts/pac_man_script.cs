@@ -32,7 +32,7 @@ public class pac_man_script : MonoBehaviour
     // Down  = 1
     // Right = 2
     // Left  = 3
-    int moveInput;
+    public int moveInput;
 
     public Vector2 movement;
 
