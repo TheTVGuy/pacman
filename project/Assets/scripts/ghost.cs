@@ -4,7 +4,7 @@
 //
 // Contributors: Myles Busig
 // Date Created: 03-02-2020
-// Last Edited: 03-03-2020
+// Last Edited: 03-04-2020
 //
 // ----------------------------------------
 
@@ -44,6 +44,12 @@ public class ghost : MonoBehaviour
 		rigidbody.velocity = currentDirection * speed * Time.deltaTime;
 		
 		animator = GetComponent<Animator>();
+		
+		// Set the ghost's animation color
+		animator.SetBool("red", type == ghost_type.Red);
+		animator.SetBool("blue", type == ghost_type.Blue);
+		animator.SetBool("pink", type == ghost_type.Pink);
+		animator.SetBool("orange", type == ghost_type.Orange);
 		
         player = GameObject.FindWithTag("player");
     }
@@ -159,6 +165,7 @@ public class ghost : MonoBehaviour
 		currentDirection = newDirection;
 		rigidbody.velocity = currentDirection * speed * Time.deltaTime;
 		
+		// Set the animation variables
 		animator.SetBool("left", (newDirection.x == -1.0f));
 		animator.SetBool("right", (newDirection.x == 1.0f));
 		animator.SetBool("up", (newDirection.y == 1.0f));
