@@ -45,12 +45,6 @@ public class ghost : MonoBehaviour
 		
 		animator = GetComponent<Animator>();
 		
-		// Set the ghost's animation color
-		animator.SetBool("red", type == ghost_type.Red);
-		animator.SetBool("blue", type == ghost_type.Blue);
-		animator.SetBool("pink", type == ghost_type.Pink);
-		animator.SetBool("orange", type == ghost_type.Orange);
-		
         player = GameObject.FindWithTag("player");
     }
 	
