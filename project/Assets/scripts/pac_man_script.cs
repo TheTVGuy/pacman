@@ -29,6 +29,7 @@ public class pac_man_script : MonoBehaviour
     Vector2 movement;
 
     Rigidbody2D rigidbody2d;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class pac_man_script : MonoBehaviour
         lastInput = 2;
 
         rigidbody2d = gameObject.GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -84,12 +86,15 @@ public class pac_man_script : MonoBehaviour
 
                 movement.x = movement.x - 1.0f * pacSpeed * Time.deltaTime;
 
+                
+
                 Debug.Log(lastInput);
             }
         }
 
         rigidbody2d.position = movement;
 
+        animator.SetFloat("Input", lastInput);
     }
 
     void OnTriggerStay2D(Collider2D collider)
