@@ -8,6 +8,7 @@ TagManager:
   - pellet
   - fruit
   - player
+  - red_ghost
   layers:
   - Default
   - TransparentFX

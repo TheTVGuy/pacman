@@ -30,6 +30,7 @@ public class ghost : MonoBehaviour
 	public float threshold = 0.1f;
 	
 	GameObject player = null;
+	GameObject redGhost = null;
 	Vector2 currentDirection = Vector2.left;
 	Vector2 targetPosition = Vector2.zero;
 	GameObject lastTile = null;
@@ -46,6 +47,7 @@ public class ghost : MonoBehaviour
 		animator = GetComponent<Animator>();
 		
         player = GameObject.FindWithTag("player");
+		redGhost = GameObject.FindWithTag("red_ghost");
     }
 	
 	// Occurs when a trigger object collides with the ghost
@@ -84,17 +86,34 @@ public class ghost : MonoBehaviour
 	// Sets the target tile for a blue ghost
 	void SetTileBlue()
 	{
-		
+		targetPosition = redGhost.transform.position + (player.transform.position - redGhost.transform.position) * 2.0f;
 	}
 	// Sets the target tile for a blue ghost
 	void SetTilePink()
 	{
+		int directionInt = player.GetComponent<pac_man_script>().moveInput;
+		Vector2 directionVec = new Vector2(0.0f, 0.0f);
 		
+		if (directionInt == 0) directionVec.y = 1.0f;
+		else if (directionInt == 1) directionVec.y = -1.0f;
+		else if (directionInt == 2) directionVec.x = 1.0f;
+		else if (directionInt == 3) directionVec.x = -1.0f;
+		
+		targetPosition = (Vector2)player.transform.position + directionVec * 3.0f;
+		
+		Debug.Log("target = " + targetPosition + ", mv = " + directionVec);
 	}
 	// Sets the target tile for a orange ghost
 	void SetTileOrange()
 	{
 		
+	}
+	
+	// Draws a box where the target tile is for debug purposes
+	void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireCube(targetPosition, new Vector2(1.0f, 1.0f));
 	}
 	
 	// Moves the ghost towards the current target tile
