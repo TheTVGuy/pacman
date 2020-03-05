@@ -3,7 +3,7 @@
 // 3/2/2020
 // Hunter Bradley
 // Last Updated: 3/2/2020
-// 
+//
 // Is a script that allows Pac man to move and runs into pellets to
 // Eat them
 //=====================================================
@@ -34,7 +34,7 @@ public class pac_man_script : MonoBehaviour
     // Left  = 3
     int moveInput;
 
-    Vector2 movement;
+    public Vector2 movement;
 
     Rigidbody2D rigidbody2d;
     Animator animator;
@@ -140,7 +140,7 @@ public class pac_man_script : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "trigger_tile" 
+        if (collider.gameObject.tag == "trigger_tile"
             && Mathf.Abs(collider.transform.position.x - transform.position.x) <= threshold
             && Mathf.Abs(collider.transform.position.y - transform.position.y) <= threshold)
         {
